@@ -4,7 +4,6 @@ use egui::{vec2, Align2, Button, RichText, ScrollArea, TextEdit, TextStyle};
 
 use crate::storage;
 use crate::theme;
-use crate::widgets::*;
 
 use super::*;
 

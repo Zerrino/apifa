@@ -13,7 +13,6 @@ use crate::storage;
 use crate::subst;
 use crate::theme;
 use crate::ui_flow::BlockDrop;
-use crate::widgets::*;
 use crate::workspace::{Folder, Node};
 
 use super::*;

@@ -9,7 +9,6 @@ use crate::net;
 use crate::theme;
 use crate::ui_flow::{self, BlockDrop};
 use crate::ui_request;
-use crate::widgets::*;
 
 use super::*;
 

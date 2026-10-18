@@ -11,7 +11,6 @@ use crate::storage::{self, HistoryEntry};
 use crate::subst;
 use crate::theme;
 use crate::ui_flow;
-use crate::widgets::*;
 use crate::workspace::{self, Node, SavedRequest};
 
 use super::*;
