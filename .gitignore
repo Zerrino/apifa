@@ -1,0 +1,21 @@
+# Rust build output
+/target/
+
+# nix-build output (symlink into the Nix store)
+/result
+/result-*
+
+# Temporary files written during atomic saves
+*.tmp
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+.direnv/
+
+# Never commit credentials. The app keeps them outside the repo, in ~/.config/apifa/
+config.json
+.claude/

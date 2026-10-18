@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc f64d0a2025cac116bb17481744e2a63ad2ad95fa39cf201a4f3bdbdf5a178a8c # shrinks to ops = [AddFlow { folder: 0, name: 2 }, AddFlow { folder: 0, name: 2 }, Delete { node: 2 }]

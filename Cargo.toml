@@ -1,0 +1,59 @@
+[package]
+name = "apifa"
+version = "0.1.0"
+edition = "2021"
+description = "apifa (API For All): a desktop API client — HTTP, GraphQL, WebSocket, gRPC, environments, auth, scripts, flows"
+license = "MIT"
+
+[dependencies]
+eframe = { version = "0.37", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui = "0.37"
+ureq = { version = "3", features = ["json"] }
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+dirs = "6"
+rfd = "0.17"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+keyring = { version = "3", features = ["apple-native", "windows-native", "async-secret-service", "async-io", "crypto-rust"] }
+notify = { version = "8", default-features = false, features = ["macos_fsevent"] }
+parking_lot = "0.12"
+regex = { version = "1.11", default-features = false, features = ["std", "unicode-perl", "unicode-case"] }
+# Pre-request / post-response scripts (QuickJS). Only `std`: no loader, no modules, no I/O.
+rquickjs = { version = "0.14", default-features = false, features = ["std"] }
+# WebSocket tabs (blocking, rustls).
+tungstenite = { version = "0.30", default-features = false, features = ["handshake", "rustls-tls-webpki-roots"] }
+rustls = { version = "0.23", default-features = false, features = ["std", "ring", "logging", "tls12"] }
+webpki-roots = "1"
+serde_yaml_ng = "0.10"
+# gRPC (src/grpc): .proto files compiled at runtime, dynamic messages, tonic client on a private tokio runtime.
+tonic = { version = "0.14", default-features = false, features = ["channel", "tls-ring", "tls-webpki-roots", "tls-native-roots"] }
+prost = "0.14"
+prost-types = "0.14"
+prost-reflect = { version = "0.16", features = ["serde"] }
+protox = "0.10"
+miette = { version = "7", default-features = false }
+http = "1"
+tokio = { version = "1", default-features = false, features = ["rt", "time", "net"] }
+tokio-stream = { version = "0.1", default-features = false }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+strip = true
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 2
+
+[dev-dependencies]
+# UI tests (layout of the console…). kittest reads the AccessKit tree, so the tests build eframe with it.
+egui_kittest = "0.37"
+proptest = "1"
+eframe = { version = "0.37", default-features = false, features = ["accesskit"] }
+# In-process gRPC test servers (src/grpc/tests.rs).
+tonic = { version = "0.14", default-features = false, features = ["server", "router"] }
+tonic-health = "0.14"
+tonic-reflection = "0.14"

@@ -1,0 +1,2699 @@
+{
+ "docs": {
+  "name": "Acme Shop API",
+  "info": "A made-up shop API used by the tests.",
+  "copyright": "",
+  "doc_url": "/apidoc",
+  "api_url": "",
+  "resources": {
+   "users": {
+    "name": "Users",
+    "short_description": "The people of the shop: customers and staff",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/users",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:store_id/users",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/teams/:team_id/users",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the users</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "store_id",
+        "full_name": "store_id",
+        "description": "\n<p>The store id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "team_id",
+        "full_name": "team_id",
+        "description": "\n<p>The team id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>username</code>, <code>email</code>, <code>kind</code>, <code>store_id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>username</code>, <code>email</code>, <code>kind</code>, <code>store_id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/users",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 101,
+          "username": "jdoe",
+          "email": "jdoe@example.com",
+          "first_name": "Jane",
+          "last_name": "Doe",
+          "kind": "customer",
+          "store_id": 3,
+          "created_at": "2025-04-02T10:00:00.000Z",
+          "avatar": {
+           "url": "https://cdn.example.com/avatars/101.png"
+          }
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/users/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a user</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/users/101",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": {
+         "id": 101,
+         "username": "jdoe",
+         "email": "jdoe@example.com",
+         "first_name": "Jane",
+         "last_name": "Doe",
+         "kind": "customer",
+         "store_id": 3,
+         "created_at": "2025-04-02T10:00:00.000Z",
+         "avatar": {
+          "url": "https://cdn.example.com/avatars/101.png"
+         }
+        },
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/users",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Create a user</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "user",
+        "full_name": "user",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "username",
+          "full_name": "user[username]",
+          "description": "\n<p>The username.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "email",
+          "full_name": "user[email]",
+          "description": "\n<p>The email.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "first_name",
+          "full_name": "user[first_name]",
+          "description": "\n<p>The first name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "last_name",
+          "full_name": "user[last_name]",
+          "description": "\n<p>The last name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "kind",
+          "full_name": "user[kind]",
+          "description": "\n<p>The kind.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_id",
+          "full_name": "user[store_id]",
+          "description": "\n<p>The store id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "avatar",
+          "full_name": "user[avatar]",
+          "description": "\n<p>The avatar.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be File",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "update",
+      "apis": [
+       {
+        "api_url": "/v1/users/:id",
+        "http_method": "PATCH",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/users/:id",
+        "http_method": "PUT",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Update a user</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "user",
+        "full_name": "user",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "username",
+          "full_name": "user[username]",
+          "description": "\n<p>The username.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "email",
+          "full_name": "user[email]",
+          "description": "\n<p>The email.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "first_name",
+          "full_name": "user[first_name]",
+          "description": "\n<p>The first name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "last_name",
+          "full_name": "user[last_name]",
+          "description": "\n<p>The last name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "kind",
+          "full_name": "user[kind]",
+          "description": "\n<p>The kind.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_id",
+          "full_name": "user[store_id]",
+          "description": "\n<p>The store id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "avatar",
+          "full_name": "user[avatar]",
+          "description": "\n<p>The avatar.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be File",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "destroy",
+      "apis": [
+       {
+        "api_url": "/v1/users/:id",
+        "http_method": "DELETE",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Destroy a user</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "stores": {
+    "name": "Stores",
+    "short_description": "Where things are sold",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/stores",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the stores</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>, <code>city</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>, <code>city</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/stores",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 3,
+          "name": "Downtown",
+          "slug": "downtown",
+          "city": "Springfield",
+          "created_at": "2025-03-01T09:00:00.000Z"
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/stores/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a store</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/stores",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Create a store</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "store",
+        "full_name": "store",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "store[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "slug",
+          "full_name": "store[slug]",
+          "description": "\n<p>The slug.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "city",
+          "full_name": "store[city]",
+          "description": "\n<p>The city.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "update",
+      "apis": [
+       {
+        "api_url": "/v1/stores/:id",
+        "http_method": "PATCH",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:id",
+        "http_method": "PUT",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Update a store</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "store",
+        "full_name": "store",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "store[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "slug",
+          "full_name": "store[slug]",
+          "description": "\n<p>The slug.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "city",
+          "full_name": "store[city]",
+          "description": "\n<p>The city.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "destroy",
+      "apis": [
+       {
+        "api_url": "/v1/stores/:id",
+        "http_method": "DELETE",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Destroy a store</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "categories": {
+    "name": "Categories",
+    "short_description": "Groups of products",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/categories",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the categories</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/categories",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 5,
+          "name": "Garden",
+          "slug": "garden"
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/categories/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a category</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "products": {
+    "name": "Products",
+    "short_description": "What a store sells",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/products",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/categories/:category_id/products",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:store_id/products",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:store_id/categories/:category_id/products",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the products</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "category_id",
+        "full_name": "category_id",
+        "description": "\n<p>The category id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "store_id",
+        "full_name": "store_id",
+        "description": "\n<p>The store id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>, <code>category_id</code>, <code>price</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>slug</code>, <code>category_id</code>, <code>price</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/products",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 7,
+          "name": "Watering can",
+          "slug": "watering-can",
+          "price": 12.5,
+          "category": {
+           "id": 5,
+           "name": "Garden",
+           "slug": "garden"
+          },
+          "store_ids": [
+           3
+          ],
+          "created_at": "2025-01-10T08:00:00.000Z"
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/products/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a product</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/products",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Create a product</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "product",
+        "full_name": "product",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "product[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "slug",
+          "full_name": "product[slug]",
+          "description": "\n<p>The slug.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "price",
+          "full_name": "product[price]",
+          "description": "\n<p>The price.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Float",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "category_id",
+          "full_name": "product[category_id]",
+          "description": "\n<p>The category id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_ids",
+          "full_name": "product[store_ids]",
+          "description": "\n<p>The store ids.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be an array of Integer",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "update",
+      "apis": [
+       {
+        "api_url": "/v1/products/:id",
+        "http_method": "PATCH",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/products/:id",
+        "http_method": "PUT",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Update a product</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "product",
+        "full_name": "product",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "product[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "slug",
+          "full_name": "product[slug]",
+          "description": "\n<p>The slug.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "price",
+          "full_name": "product[price]",
+          "description": "\n<p>The price.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Float",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "category_id",
+          "full_name": "product[category_id]",
+          "description": "\n<p>The category id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_ids",
+          "full_name": "product[store_ids]",
+          "description": "\n<p>The store ids.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be an array of Integer",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "destroy",
+      "apis": [
+       {
+        "api_url": "/v1/products/:id",
+        "http_method": "DELETE",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Destroy a product</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "orders": {
+    "name": "Orders",
+    "short_description": "What users bought",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/orders",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/users/:user_id/orders",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the orders</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "user_id",
+        "full_name": "user_id",
+        "description": "\n<p>The user id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>status</code>, <code>user_id</code>, <code>total</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>status</code>, <code>user_id</code>, <code>total</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/orders",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 9001,
+          "status": "shipped",
+          "total": 25.0,
+          "user": {
+           "id": 101,
+           "username": "jdoe"
+          },
+          "product_ids": [
+           7
+          ],
+          "items": [
+           {
+            "id": 1,
+            "product": {
+             "id": 7,
+             "name": "Watering can"
+            },
+            "quantity": 2
+           }
+          ],
+          "created_at": "2025-05-05T12:00:00.000Z"
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/orders/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a order</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/orders",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Create a order</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "order",
+        "full_name": "order",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "user_id",
+          "full_name": "order[user_id]",
+          "description": "\n<p>The user id.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "product_ids",
+          "full_name": "order[product_ids]",
+          "description": "\n<p>The product ids.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be an array of Integer",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "note",
+          "full_name": "order[note]",
+          "description": "\n<p>The note.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "status",
+          "full_name": "order[status]",
+          "description": "\n<p>The status.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "update",
+      "apis": [
+       {
+        "api_url": "/v1/orders/:id",
+        "http_method": "PATCH",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/orders/:id",
+        "http_method": "PUT",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Update a order</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "order",
+        "full_name": "order",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "user_id",
+          "full_name": "order[user_id]",
+          "description": "\n<p>The user id.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "product_ids",
+          "full_name": "order[product_ids]",
+          "description": "\n<p>The product ids.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be an array of Integer",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "note",
+          "full_name": "order[note]",
+          "description": "\n<p>The note.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "status",
+          "full_name": "order[status]",
+          "description": "\n<p>The status.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "destroy",
+      "apis": [
+       {
+        "api_url": "/v1/orders/:id",
+        "http_method": "DELETE",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Destroy a order</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "order_items": {
+    "name": "Order items",
+    "short_description": "The lines of an order",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/orders/:order_id/order_items",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>The items of an order</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "order_id",
+        "full_name": "order_id",
+        "description": "\n<p>The order id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>product_id</code>, <code>quantity</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>product_id</code>, <code>quantity</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "teams": {
+    "name": "Teams",
+    "short_description": "Staff working together",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/teams",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:store_id/teams",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Return all the teams</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "store_id",
+        "full_name": "store_id",
+        "description": "\n<p>The store id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>store_id</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>store_id</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/teams",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 12,
+          "name": "Night shift",
+          "store_id": 3,
+          "users": [
+           {
+            "id": 101,
+            "username": "jdoe"
+           }
+          ]
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "show",
+      "apis": [
+       {
+        "api_url": "/v1/teams/:id",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Get a team</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/teams",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Create a team</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "team",
+        "full_name": "team",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "team[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_id",
+          "full_name": "team[store_id]",
+          "description": "\n<p>The store id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "update",
+      "apis": [
+       {
+        "api_url": "/v1/teams/:id",
+        "http_method": "PATCH",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/teams/:id",
+        "http_method": "PUT",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Update a team</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "team",
+        "full_name": "team",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "name",
+          "full_name": "team[name]",
+          "description": "\n<p>The name.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "store_id",
+          "full_name": "team[store_id]",
+          "description": "\n<p>The store id.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "destroy",
+      "apis": [
+       {
+        "api_url": "/v1/teams/:id",
+        "http_method": "DELETE",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Destroy a team</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "id",
+        "full_name": "id",
+        "description": "\n<p>The requested id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     }
+    ]
+   },
+   "reviews": {
+    "name": "Reviews",
+    "short_description": "What users think of products",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/products/:product_id/reviews",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/reviews",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Reviews</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>rating</code>, <code>user_id</code>, <code>product_id</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>rating</code>, <code>user_id</code>, <code>product_id</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>created_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       },
+       {
+        "name": "product_id",
+        "full_name": "product_id",
+        "description": "\n<p>The product id</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       }
+      ]
+     },
+     {
+      "doc_url": "",
+      "name": "create",
+      "apis": [
+       {
+        "api_url": "/v1/products/:product_id/reviews",
+        "http_method": "POST",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Review a product</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "product_id",
+        "full_name": "product_id",
+        "description": "\n<p>The product id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "review",
+        "full_name": "review",
+        "description": "",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "rating",
+          "full_name": "review[rating]",
+          "description": "\n<p>The rating.</p>\n",
+          "required": true,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "comment",
+          "full_name": "review[comment]",
+          "description": "\n<p>The comment.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be String",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "photo",
+          "full_name": "review[photo]",
+          "description": "\n<p>The photo.</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be File",
+          "expected_type": "string",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "events": {
+    "name": "Events",
+    "short_description": "Sales and store events",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/events",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       },
+       {
+        "api_url": "/v1/stores/:store_id/events",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Events</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "store_id",
+        "full_name": "store_id",
+        "description": "\n<p>The store id or slug</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>name</code>, <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ],
+      "examples": [
+       {
+        "verb": "GET",
+        "path": "/v1/events",
+        "versions": [
+         "1.0"
+        ],
+        "query": "",
+        "request_data": null,
+        "response_data": [
+         {
+          "id": 40,
+          "name": "Spring sale",
+          "begin_at": "2025-03-20T09:00:00.000Z",
+          "end_at": null,
+          "store_id": 3
+         }
+        ],
+        "code": "200",
+        "show_in_doc": 1,
+        "recorded": true
+       }
+      ]
+     }
+    ]
+   },
+   "visits": {
+    "name": "Visits",
+    "short_description": "Who came to a store, when",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/stores/:store_id/visits",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": null
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Visits of a store</p>",
+      "errors": [],
+      "params": [
+       {
+        "name": "store_id",
+        "full_name": "store_id",
+        "description": "\n<p>The store id</p>\n",
+        "required": true,
+        "allow_nil": false,
+        "validator": "Must be String",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "sort",
+        "full_name": "sort",
+        "description": "\n<p>The sort field. Sorted by id desc by default.</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>user_id</code>, <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "filter",
+        "full_name": "filter",
+        "description": "\n<p>Filtering on one or more fields</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>id</code>, <code>user_id</code>, <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "range",
+        "full_name": "range",
+        "description": "\n<p>Select on a particular range</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be one of: <code>begin_at</code>, <code>end_at</code>.",
+        "expected_type": "string",
+        "metadata": null,
+        "show": true,
+        "validations": []
+       },
+       {
+        "name": "page",
+        "full_name": "page",
+        "description": "\n<p>The pagination</p>\n",
+        "required": false,
+        "allow_nil": false,
+        "validator": "Must be a Hash",
+        "expected_type": "hash",
+        "metadata": null,
+        "show": true,
+        "validations": [],
+        "params": [
+         {
+          "name": "number",
+          "full_name": "page[number]",
+          "description": "\n<p>The current page</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         },
+         {
+          "name": "size",
+          "full_name": "page[size]",
+          "description": "\n<p>The number of items per page, 1 to 100, default 30</p>\n",
+          "required": false,
+          "allow_nil": false,
+          "validator": "Must be Integer",
+          "expected_type": "numeric",
+          "metadata": null,
+          "show": true,
+          "validations": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "legacy_coupons": {
+    "name": "Legacy coupons",
+    "short_description": "Old coupons",
+    "methods": [
+     {
+      "doc_url": "",
+      "name": "index",
+      "apis": [
+       {
+        "api_url": "/v1/coupons",
+        "http_method": "GET",
+        "short_description": null,
+        "deprecated": true
+       }
+      ],
+      "formats": null,
+      "full_description": "<p>Use the promotions instead</p>",
+      "errors": [],
+      "params": []
+     }
+    ]
+   }
+  }
+ }
+}
